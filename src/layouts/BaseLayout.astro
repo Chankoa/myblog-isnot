@@ -1,0 +1,38 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/globals.css';
+const { pageTitle, pageDescription = "Des histoires et des idées pour éclairer votre veille." } = Astro.props;
+---
+
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{pageTitle}</title>
+	</head>
+	<body>
+
+		<Header />
+
+		<section class="page-hero" aria-labelledby="page-title">
+			<div class="page-hero__content">
+				<p class="page-hero__eyebrow">AstroBlog</p>
+				<h1 id="page-title">{pageTitle}</h1>
+				{pageDescription && <p class="page-hero__description">{pageDescription}</p>}
+			</div>
+		</section>
+
+		<!-- Les éléments "individualisés" de chaque template de page s'affichent là : -->
+		<main class="conteneur">
+		<slot />
+		</main>
+		<!--  -->
+
+		<!-- Footer  -->
+		<Footer />
+
+	</body>
+</html>

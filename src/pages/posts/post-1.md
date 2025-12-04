@@ -1,4 +1,6 @@
 ---
+layout: ../../layouts/MarkDownPostLayout.astro
+
 title: 'Mon premier article de blog'
 pubDate: 02-12-2025
 description: "Il s'agit du premier article de mon nouveau blog Astro."
@@ -8,9 +10,6 @@ image:
     alt: "Le logo Astro sur un fond sombre avec une lueur rose."
 tags: ["astro", "blogging", "apprentissage en public"]
 ---
-# Mon premier article de blog
-
-Publié le : 02/12/2025
 
 Bienvenue sur mon _nouveau blog_ dédié à l'apprentissage d'Astro ! Ici, je vais partager mon parcours d'apprentissage en créant un nouveau site web.
 

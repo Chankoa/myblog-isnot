@@ -1,27 +1,54 @@
 ---
-const pageTitle = "Ze blog page"
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await Astro.glob('./posts/*.md')).sort((a, b) => {
+  const dateA = new Date(a.frontmatter.pubDate ?? 0).valueOf();
+  const dateB = new Date(b.frontmatter.pubDate ?? 0).valueOf();
+  return dateB - dateA;
+});
+
+const formatDate = (dateInput?: string | Date) => {
+  if (!dateInput) {
+    return "Date à venir";
+  }
+
+  const parsed = dateInput instanceof Date ? dateInput : new Date(dateInput);
+  if (isNaN(parsed.valueOf())) {
+    return typeof dateInput === "string" ? dateInput : "Date à venir";
+  }
+
+  return parsed.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+};
+
+const pageTitle = "Articles du blog";
+const pageDescription = "Des histoires, des explorations Astro et des tutoriels sélectionnés pour vous.";
 ---
+<BaseLayout {pageTitle} {pageDescription}>
+  <section class="blog-intro">
+    <p>Parcourez les derniers billets publiés sur AstroBlog. Chaque article mêle expérimentation front-end et retours d'expérience.</p>
+  </section>
 
-<html lang="fr">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-
-		<a href="/">Accueil</a>
-    	<a href="/about/">À propos</a>
-        <a href="/blog/">Blog</a>
-		
-  <h1>{pageTitle}</h1>
-    <ul>
-      <li><a href="/posts/post-1/">Article 1</a></li>
-      <li><a href="/posts/post-2/">Article 2</a></li>
-      <li><a href="/posts/post-3/">Article 3</a></li>
-    </ul>
-  <p>Voici où je vais publier mon parcours d'apprentissage d'Astro.</p>
-	</body>
-</html>
+  <section class="blog-grid" aria-label="Articles récents">
+    {posts.map((post) => (
+      <article class="blog-card">
+        <div class="blog-card__media">
+          <img
+            src={post.frontmatter.image?.url ?? 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80'}
+            alt={post.frontmatter.image?.alt ?? post.frontmatter.title}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="blog-card__body">
+          <p class="blog-card__meta">{formatDate(post.frontmatter.pubDate)}</p>
+          <h2>{post.frontmatter.title}</h2>
+          <p class="blog-card__description">{post.frontmatter.description}</p>
+          <a class="blog-card__link" href={post.url}>
+            Lire l'article
+            <span aria-hidden="true" class="blog-card__link-icon">→</span>
+          </a>
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

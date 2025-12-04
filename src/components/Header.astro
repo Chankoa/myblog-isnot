@@ -1,0 +1,92 @@
+---
+
+import Menu from "./Menu.astro";
+import Navigation from "./Navigation.astro";
+
+--- 
+
+
+<!-- Header -->
+<header class="site-header">
+    <div class="site-header__inner">
+        <a class="site-logo" href="/" aria-label="Retour à l'accueil">
+            <span class="site-logo__mark" aria-hidden="true">AB</span>
+            <span class="site-logo__text">
+                <strong>AstroBlog</strong>
+                <small>Histoires & insights</small>
+            </span>
+        </a>
+
+        <div class="site-header__actions">
+            <button
+                type="button"
+                class="theme-toggle"
+                aria-pressed="false"
+                data-theme-toggle
+            >
+                <span class="theme-toggle__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="presentation">
+                        <path d="M12 3v2m0 14v2m9-9h-2M5 12H3m14.95 6.95-1.41-1.41M7.46 7.46 6.05 6.05m11.31 0-1.41 1.41M7.46 16.54l-1.41 1.41" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" fill="none" />
+                    </svg>
+                    <svg viewBox="0 0 24 24" role="presentation">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                    </svg>
+                </span>
+                <span class="sr-only">Basculer le thème</span>
+            </button>
+            <Menu />
+            <nav class="site-nav" aria-label="Navigation principale">
+                <Navigation />
+            </nav>
+        </div>
+    </div>
+</header>
+
+<script>
+    const initThemeToggle = () => {
+        const toggle = document.querySelector('[data-theme-toggle]');
+        const root = document.documentElement;
+        if (!toggle) return;
+
+        const applyTheme = (theme) => {
+            const mode = theme === 'light' ? 'light' : 'dark';
+            if (mode === 'light') {
+                root.setAttribute('data-theme', 'light');
+            } else {
+                root.removeAttribute('data-theme');
+            }
+            toggle.setAttribute('aria-pressed', String(mode === 'light'));
+            toggle.setAttribute('data-theme-state', mode);
+            return mode;
+        };
+
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+        const stored = localStorage.getItem('theme');
+        let currentTheme = applyTheme(stored ?? (mediaQuery.matches ? 'light' : 'dark'));
+
+        toggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(currentTheme);
+            localStorage.setItem('theme', currentTheme);
+        });
+
+        const handlePreferenceChange = (event) => {
+            if (!localStorage.getItem('theme')) {
+                currentTheme = applyTheme(event.matches ? 'light' : 'dark');
+            }
+        };
+
+        if (mediaQuery.addEventListener) {
+            mediaQuery.addEventListener('change', handlePreferenceChange);
+        } else if (mediaQuery.addListener) {
+            mediaQuery.addListener(handlePreferenceChange);
+        }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initThemeToggle, { once: true });
+    } else {
+        initThemeToggle();
+    }
+</script>

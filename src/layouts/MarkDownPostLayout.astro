@@ -1,0 +1,38 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import "../styles/globals.css";
+const { frontmatter } = Astro.props;
+---
+
+<meta charset="utf-8" />
+<title>{frontmatter.title}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<Header />
+
+<!-- Hero section -->
+<section class="hero-section">
+    <figure class="hero-visual">
+        <img src={frontmatter.image.url} alt={frontmatter.image.alt} loading="lazy" decoding="async">
+        <figcaption>{frontmatter.image.alt}</figcaption>
+    </figure>
+
+    <header class="hero-header">
+        <h1>{frontmatter.title}</h1>
+         <p class="hero-eyebrow">Écrit par {frontmatter.author} | Publié le {frontmatter.pubDate}</p>
+        <p class="hero-description">{frontmatter.description}</p>
+        <ul class="hero-tags">
+            {frontmatter.tags?.map((tag: string) => <li class="pills">{tag}</li>)}
+        </ul>
+       
+    </header>
+</section>
+
+<!-- Le contenu de l'article -->
+<main class="conteneur">
+<slot />
+</main>
+
+<Footer />
+

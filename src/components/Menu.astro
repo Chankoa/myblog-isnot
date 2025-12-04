@@ -1,0 +1,66 @@
+---
+---
+
+<button
+  type="button"
+  aria-expanded="false"
+  aria-controls="main-menu"
+  class="menu"
+  data-menu-button
+>
+  <span class="menu-label">Menu</span>
+  <span class="menu-icon" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+</button>
+
+<script>
+  const initMenuToggle = () => {
+    const button = document.querySelector('[data-menu-button]');
+    const nav = document.getElementById('main-menu');
+    if (!button || !nav) return;
+
+    const setMenuState = (open) => {
+      button.setAttribute('aria-expanded', String(open));
+      nav.setAttribute('data-open', String(open));
+    };
+
+    const closeMenu = () => setMenuState(false);
+
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      setMenuState(!expanded);
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeMenu();
+        button.focus();
+      }
+    });
+
+    const mq = window.matchMedia('(min-width: 768px)');
+    const mqHandler = (evt) => {
+      if (evt.matches) {
+        closeMenu();
+      }
+    };
+    if (mq.addEventListener) {
+      mq.addEventListener('change', mqHandler);
+    } else if (mq.addListener) {
+      mq.addListener(mqHandler);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMenuToggle, { once: true });
+  } else {
+    initMenuToggle();
+  }
+</script>

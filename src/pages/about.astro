@@ -1,4 +1,7 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/globals.css';
+
 const pageTitle = "A propos de moi !";
 
 const identity = {
@@ -14,42 +17,41 @@ const happy = true;
 const finished = false;
 const goal = 3;
 
+// Variables CSS du composant
+const skillColor = "#00cc99";
+const fontWeight = "bold";
+const textCase = "Uppercase";
+
 ---
 
-<html lang="fr">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-<body>
+<!-- Styles nuls :) -->
+<style define:vars={{skillColor, fontWeight, textCase}}>
+.skill {
+    color: var(--skillColor);
+    font-weight: var(--fontWeight);
+    text-transform: var(--textCase);
+}
+</style>
 
-		<a href="/">Accueil</a>
-    	<a href="/about/">À propos</a>
-        <a href="/blog/">Blog</a>
+<BaseLayout pageTitle={pageTitle}>
+    <h2>Voici quelques faits me concernant :</h2>
+    <ul>
+        <li>Je m'appelle {identity.firstName}</li>
+        <li>Je vis en {identity.country} et je travaille en tant que {identity.occupation[0]} et parfois comme {identity.occupation[1]}.</li>
+        {identity.hobbies.length >= 2 &&
+        <li>Deux de mes loisirs sont la {identity.hobbies[2]} et l'{identity.hobbies[3]}</li>
+        }
+    </ul>
 
-<h1>{pageTitle}</h1>
-
-<p>Voici quelques faits me concernant :</p>
-
-<ul>
-    <li>Je m'appelle {identity.firstName}</li>
-    <li>Je vis en {identity.country} et je travaille en tant que {identity.occupation}</li>
-    {identity.hobbies.length >= 2 &&
-    <li>Deux de mes loisirs sont la {identity.hobbies[2]} et l'{identity.hobbies[3]}</li>
-     }
-</ul>
-
-<p>Voici mes compétences :</p>
-<ul>
-    {skills.map((skill) => <li>{skill}</li>)}
-</ul>
+    <p>Voici mes compétences :</p>
+    <ul>
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
 
     {happy && <p>Je suis heureux d'apprendre Astro !</p>}
     {finished && <p>J'ai terminé ce tutoriel</p>}
     {goal === 3 ? <p>Mon objectif est de terminer en 3 jours</p> : <p>Mon objectif n'est pas de 3 jours </p>}
-	</body>
-</html>
+
+</BaseLayout>
+
+
