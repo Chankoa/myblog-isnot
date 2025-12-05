@@ -1,15 +1,17 @@
+@use "../tokens/media" as media;
+
 /* Blog post hero */
 .hero-section {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: stretch;
-  margin: clamp(2rem, 4vw, 4.5rem) auto;
+  margin: var(--space-hero-gap) auto;
   min-height: clamp(24rem, 70vh, 36rem);
   width: 100%;
   max-width: var(--content-width);
   border-radius: var(--hero-radius);
-  padding: clamp(1rem, 2vw, 1.75rem);
+  padding: var(--space-hero-padding);
   background: var(--surface-hero-bg);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
@@ -40,7 +42,7 @@
   position: absolute;
   inset: auto 1.5rem 1.25rem;
   z-index: 2;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--surface-hero-figcaption);
   font-size: 0.95rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -48,14 +50,14 @@
 
 .hero-header {
   position: absolute;
-  top: clamp(1.5rem, 4vw, 3rem);
-  left: clamp(1.5rem, 4vw, 3rem);
+  top: var(--space-hero-card-offset);
+  left: var(--space-hero-card-offset);
   max-width: min(540px, 65%);
   background: var(--surface-hero-card-bg);
   backdrop-filter: blur(22px) saturate(160%);
-  border: 1px solid var(--surface-hero-card-border);
+  border: var(--border-width-hairline) solid var(--surface-hero-card-border);
   border-radius: calc(var(--hero-radius) * 0.65);
-  padding: clamp(1.25rem, 3vw, 2.5rem);
+  padding: var(--space-hero-card-padding);
   color: var(--clr-text);
   z-index: 3;
   box-shadow: var(--surface-hero-card-shadow);
@@ -79,36 +81,36 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: var(--space-sm);
 }
 
 .pills {
-  padding: 0.35rem 0.95rem;
-  border-radius: 999px;
+  padding: var(--space-3xs) var(--space-sm);
+  border-radius: var(--radius-pill);
   background: var(--clr-tag-bg);
   color: var(--clr-accent);
   font-size: 0.9rem;
-  border: 1px solid rgba(159, 255, 226, 0.4);
+  border: var(--border-width-hairline) solid var(--surface-pill-border);
   letter-spacing: 0.05em;
 }
 
-@media (max-width: 900px) {
+@include media.respond("xxl") {
   .hero-header {
     max-width: 80%;
   }
 }
 
-@media (max-width: 720px) {
+@include media.respond("lg") {
   .hero-section {
-    padding: 0.75rem;
+    padding: var(--space-sm);
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--space-lg);
     align-items: flex-start;
   }
 
   .hero-header {
     position: static;
-    margin-bottom: 1.25rem;
+    margin-bottom: var(--space-md);
     max-width: 100%;
     order: -1;
   }

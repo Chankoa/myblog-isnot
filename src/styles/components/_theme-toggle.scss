@@ -1,9 +1,9 @@
 .theme-toggle {
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.06);
+  width: var(--control-size-md);
+  height: var(--control-size-md);
+  border-radius: var(--radius-pill);
+  border: var(--border-width-hairline) solid var(--surface-theme-toggle-border);
+  background: var(--surface-theme-toggle-bg);
   color: var(--clr-text);
   display: inline-flex;
   align-items: center;
@@ -20,8 +20,8 @@
 }
 
 .theme-toggle__icon svg {
-  width: 22px;
-  height: 22px;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
   position: absolute;
   opacity: 0;
   transition: opacity 0.25s ease;
@@ -38,7 +38,7 @@
 .theme-toggle:hover,
 .theme-toggle:focus-visible {
   border-color: var(--clr-accent);
-  background: rgba(159, 255, 226, 0.15);
+  background: var(--surface-theme-toggle-hover-bg);
   outline: none;
 }
 

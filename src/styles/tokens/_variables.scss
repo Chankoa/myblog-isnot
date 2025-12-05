@@ -1,63 +1,146 @@
+/* Design tokens shared across the project */
 :root {
+  /* --- Layout scale --- */
   --content-width: min(1200px, 92vw);
+  --hero-radius: clamp(1rem, 2vw, 2.75rem);
+  --radius-card: 1.5rem;
+  --radius-pill: 999px;
+  --border-width-hairline: 1px;
+  --nav-panel-width: min(320px, 85vw);
+
+  /* --- Spacing scale --- */
+  --space-3xs: 0.35rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 0.9rem;
+  --space-md: 1.25rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 2.5rem;
+  --space-3xl: 3rem;
+  --space-section-gap: clamp(1rem, 2vw, 1.75rem);
+  --space-container-padding: clamp(1.25rem, 4vw, 3rem);
+  --space-container-padding-compact: 1.25rem 1rem 2rem;
+  --space-header-padding-block: 0.9rem;
+  --space-header-padding-inline: clamp(1rem, 3vw, 2.75rem);
+  --space-header-gap: 1.5rem;
+  --space-nav-gap: 1rem;
+  --space-nav-inline-gap: 1.8rem;
+  --space-page-hero-padding-y: clamp(4rem, 9vw, 6.5rem);
+  --space-page-hero-inline: clamp(1rem, 3vw, 2.5rem);
+  --space-hero-gap: clamp(2rem, 4vw, 4.5rem);
+  --space-hero-padding: clamp(1rem, 2vw, 1.75rem);
+  --space-hero-card-padding: clamp(1.25rem, 3vw, 2.5rem);
+  --space-hero-card-offset: clamp(1.5rem, 4vw, 3rem);
+  --space-blog-grid-gap: clamp(1.25rem, 3vw, 2.25rem);
+  --space-blog-intro-margin: clamp(2rem, 4vw, 3rem);
+  --space-blog-card-padding: clamp(1.25rem, 3vw, 2rem);
+  --space-blog-card-padding-compact: 1.15rem;
+  --space-menu-padding: 0.55rem 0 var(--space-sm) 1rem;
+  --space-nav-panel-padding-block: clamp(4rem, 12vh, 6rem);
+  --space-nav-panel-padding-inline: clamp(1.5rem, 5vw, 2.75rem);
+  --space-nav-panel-padding-bottom: 2.5rem;
+
+  /* --- Component sizing --- */
+  --control-size-sm: 40px;
+  --control-size-md: 48px;
+  --icon-size-sm: 22px;
+  --icon-size-md: 34px;
+  --icon-stroke-thin: 2px;
+
+  /* --- Backgrounds & gradients (dark mode base) --- */
+  --gradient-html: radial-gradient(circle at top, #131a3b 0%, #050714 55%, #03030b 100%);
+  --gradient-body: linear-gradient(120deg, rgba(70, 102, 255, 0.08), rgba(157, 255, 200, 0.08));
   --clr-bg: #050714;
   --clr-panel: #0f1629;
   --clr-text: #f4f6fb;
   --clr-muted: #97a3c4;
   --clr-accent: #9fffe2;
   --clr-tag-bg: rgba(159, 255, 226, 0.12);
-  --hero-radius: clamp(1rem, 2vw, 2.75rem);
-  --shadow-soft: 0 30px 60px rgba(2, 4, 14, 0.45);
-  --gradient-html: radial-gradient(circle at top, #131a3b 0%, #050714 55%, #03030b 100%);
-  --gradient-body: linear-gradient(120deg, rgba(70, 102, 255, 0.08), rgba(157, 255, 200, 0.08));
   --surface-header-bg: rgba(3, 5, 17, 0.92);
-  --surface-header-border: rgba(255, 255, 255, 0.06);
-  --surface-header-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
   --surface-nav-bg: radial-gradient(circle at 20% 20%, rgba(148, 163, 255, 0.2), transparent 70%),
     linear-gradient(165deg, rgba(7, 10, 27, 0.98), rgba(3, 6, 20, 0.98));
-  --surface-nav-border: rgba(255, 255, 255, 0.08);
-  --surface-overlay: rgba(2, 3, 12, 0.65);
   --surface-page-hero: radial-gradient(circle at 5% 10%, rgba(96, 165, 250, 0.2), transparent 45%),
     radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.25), transparent 50%),
     linear-gradient(140deg, rgba(6, 11, 32, 0.95), rgba(4, 6, 20, 0.9));
-  --page-hero-glow: rgba(159, 255, 226, 0.12);
   --surface-hero-bg: radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.35), transparent 55%),
     linear-gradient(145deg, rgba(7, 10, 24, 0.95), rgba(5, 9, 20, 0.8));
   --surface-hero-card-bg: rgba(5, 7, 22, 0.78);
-  --surface-hero-card-border: rgba(255, 255, 255, 0.16);
-  --surface-hero-card-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-  --surface-hero-visual-overlay: linear-gradient(180deg, rgba(2, 6, 23, 0.35), rgba(2, 6, 23, 0.7));
   --surface-conteneur-bg: linear-gradient(160deg, rgba(15, 22, 41, 0.95), rgba(6, 9, 25, 0.9));
+  --surface-blog-card-bg: rgba(5, 7, 18, 0.9);
+  --surface-blog-card-gradient: linear-gradient(165deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+  --surface-hero-visual-overlay: linear-gradient(180deg, rgba(2, 6, 23, 0.35), rgba(2, 6, 23, 0.7));
+  --surface-overlay: rgba(2, 3, 12, 0.65);
+  --surface-theme-toggle-bg: rgba(255, 255, 255, 0.06);
+
+  /* --- Borders, shadows & depth --- */
+  --surface-header-border: rgba(255, 255, 255, 0.06);
+  --surface-nav-border: rgba(255, 255, 255, 0.08);
+  --surface-hero-card-border: rgba(255, 255, 255, 0.16);
   --surface-conteneur-border: rgba(255, 255, 255, 0.06);
+  --surface-blog-card-border: rgba(255, 255, 255, 0.08);
+  --surface-blog-card-hover-border: rgba(159, 255, 226, 0.6);
+  --surface-pill-border: rgba(159, 255, 226, 0.4);
+  --surface-theme-toggle-border: rgba(255, 255, 255, 0.22);
+  --surface-menu-hover-bg: rgba(159, 255, 226, 0.08);
+  --surface-theme-toggle-hover-bg: rgba(159, 255, 226, 0.15);
+  --surface-hero-figcaption: rgba(255, 255, 255, 0.8);
+  --brand-logo-gradient: linear-gradient(135deg, #8b5cf6, #38bdf8);
+  --surface-link-icon-bg: rgba(159, 255, 226, 0.18);
+  --shadow-soft: 0 30px 60px rgba(2, 4, 14, 0.45);
+  --surface-header-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  --surface-hero-card-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
   --surface-conteneur-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  --shadow-nav-panel: -20px 0 45px rgba(0, 0, 0, 0.45);
+  --shadow-blog-card: 0 25px 45px rgba(3, 4, 14, 0.35);
+
+  /* --- Hero accents --- */
+  --page-hero-glow: rgba(159, 255, 226, 0.12);
 }
 
 :root[data-theme="light"] {
+  /* --- Backgrounds & gradients (light mode overrides) --- */
+  --gradient-html: radial-gradient(circle at top, #e0e7ff 0%, #f8fafc 55%, #ffffff 100%);
+  --gradient-body: linear-gradient(120deg, rgba(148, 163, 184, 0.25), rgba(226, 232, 240, 0.4));
   --clr-bg: #f5f7fb;
   --clr-panel: #ffffff;
   --clr-text: #0f172a;
   --clr-muted: #475569;
   --clr-accent: #2563eb;
   --clr-tag-bg: rgba(37, 99, 235, 0.12);
-  --shadow-soft: 0 25px 45px rgba(15, 23, 42, 0.12);
-  --gradient-html: radial-gradient(circle at top, #e0e7ff 0%, #f8fafc 55%, #ffffff 100%);
-  --gradient-body: linear-gradient(120deg, rgba(148, 163, 184, 0.25), rgba(226, 232, 240, 0.4));
   --surface-header-bg: rgba(255, 255, 255, 0.9);
-  --surface-header-border: rgba(15, 23, 42, 0.08);
-  --surface-header-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
   --surface-nav-bg: linear-gradient(165deg, rgba(248, 250, 252, 0.98), rgba(255, 255, 255, 0.96));
-  --surface-nav-border: rgba(15, 23, 42, 0.08);
-  --surface-overlay: rgba(15, 23, 42, 0.35);
   --surface-page-hero: radial-gradient(circle at 20% 0%, rgba(79, 70, 229, 0.15), transparent 45%),
     linear-gradient(135deg, rgba(241, 245, 249, 0.95), rgba(255, 255, 255, 0.9));
-  --page-hero-glow: rgba(79, 70, 229, 0.15);
   --surface-hero-bg: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.25), transparent 55%),
     linear-gradient(145deg, rgba(241, 245, 249, 0.95), rgba(248, 250, 252, 0.9));
   --surface-hero-card-bg: rgba(255, 255, 255, 0.92);
-  --surface-hero-card-border: rgba(15, 23, 42, 0.05);
-  --surface-hero-card-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
-  --surface-hero-visual-overlay: linear-gradient(180deg, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.5));
   --surface-conteneur-bg: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(243, 244, 246, 0.94));
+  --surface-blog-card-bg: rgba(255, 255, 255, 0.95);
+  --surface-blog-card-gradient: linear-gradient(165deg, rgba(15, 23, 42, 0.03), rgba(15, 23, 42, 0));
+  --surface-overlay: rgba(15, 23, 42, 0.35);
+  --surface-theme-toggle-bg: rgba(15, 23, 42, 0.04);
+
+  /* --- Borders, shadows & depth overrides --- */
+  --surface-header-border: rgba(15, 23, 42, 0.08);
+  --surface-nav-border: rgba(15, 23, 42, 0.08);
+  --surface-hero-card-border: rgba(15, 23, 42, 0.05);
   --surface-conteneur-border: rgba(15, 23, 42, 0.08);
+  --surface-blog-card-border: rgba(15, 23, 42, 0.08);
+  --surface-blog-card-hover-border: rgba(37, 99, 235, 0.45);
+  --surface-pill-border: rgba(37, 99, 235, 0.35);
+  --surface-theme-toggle-border: rgba(15, 23, 42, 0.12);
+  --surface-menu-hover-bg: rgba(37, 99, 235, 0.12);
+  --surface-theme-toggle-hover-bg: rgba(37, 99, 235, 0.12);
+  --surface-hero-figcaption: rgba(15, 23, 42, 0.8);
+  --surface-link-icon-bg: rgba(37, 99, 235, 0.15);
+  --shadow-soft: 0 25px 45px rgba(15, 23, 42, 0.12);
+  --surface-header-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+  --surface-hero-card-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
   --surface-conteneur-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+  --shadow-nav-panel: -20px 0 45px rgba(15, 23, 42, 0.1);
+  --shadow-blog-card: 0 20px 40px rgba(15, 23, 42, 0.12);
+
+  /* --- Hero accents --- */
+  --page-hero-glow: rgba(79, 70, 229, 0.15);
 }

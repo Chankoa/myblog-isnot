@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const posts = (await Astro.glob('./posts/*.md')).sort((a, b) => {
+const postModules = import.meta.glob('./posts/*.md', { eager: true });
+const posts = Object.values(postModules).sort((a, b) => {
   const dateA = new Date(a.frontmatter.pubDate ?? 0).valueOf();
   const dateB = new Date(b.frontmatter.pubDate ?? 0).valueOf();
   return dateB - dateA;

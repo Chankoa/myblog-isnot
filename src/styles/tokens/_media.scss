@@ -1,0 +1,32 @@
+@use "sass:map";
+
+$breakpoints: (
+  "sm": 600px,
+  "md": 640px,
+  "lg": 720px,
+  "xl": 768px,
+  "xxl": 900px
+);
+
+/// Media-query helper to keep breakpoint usage consistent.
+/// @param {string} $size - one of the keys defined in $breakpoints
+/// @param {string} $direction - "max" (default) or "min"
+@mixin respond($size, $direction: "max") {
+  $value: map.get($breakpoints, $size);
+
+  @if $value == null {
+    @error "Unknown breakpoint `#{$size}`. Available keys: #{map.keys($breakpoints)}";
+  }
+
+  @if $direction == "max" {
+    @media (max-width: $value) {
+      @content;
+    }
+  } @else if $direction == "min" {
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @error "`$direction` must be 'max' or 'min'.";
+  }
+}

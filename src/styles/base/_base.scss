@@ -21,7 +21,7 @@ body {
 }
 
 h1 {
-  margin: 0 0 0.75rem;
+  margin: 0 0 var(--space-sm);
   font-size: clamp(2.2rem, 4vw, 3.65rem);
   letter-spacing: -0.02em;
 }
