@@ -1,0 +1,123 @@
+/* Blog post hero */
+.hero-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  margin: clamp(2rem, 4vw, 4.5rem) auto;
+  min-height: clamp(24rem, 70vh, 36rem);
+  width: 100%;
+  max-width: var(--content-width);
+  border-radius: var(--hero-radius);
+  padding: clamp(1rem, 2vw, 1.75rem);
+  background: var(--surface-hero-bg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.hero-visual {
+  position: relative;
+  flex: 1;
+  border-radius: calc(var(--hero-radius) * 0.9);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--surface-hero-visual-overlay);
+  z-index: 1;
+}
+
+.hero-visual img {
+  height: 100%;
+  min-height: clamp(22rem, 60vh, 34rem);
+}
+
+.hero-visual figcaption {
+  position: absolute;
+  inset: auto 1.5rem 1.25rem;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-header {
+  position: absolute;
+  top: clamp(1.5rem, 4vw, 3rem);
+  left: clamp(1.5rem, 4vw, 3rem);
+  max-width: min(540px, 65%);
+  background: var(--surface-hero-card-bg);
+  backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid var(--surface-hero-card-border);
+  border-radius: calc(var(--hero-radius) * 0.65);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  color: var(--clr-text);
+  z-index: 3;
+  box-shadow: var(--surface-hero-card-shadow);
+}
+
+.hero-eyebrow {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--clr-accent);
+  margin-bottom: 0.85rem;
+}
+
+.hero-description {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: var(--clr-muted);
+}
+
+.hero-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.pills {
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  background: var(--clr-tag-bg);
+  color: var(--clr-accent);
+  font-size: 0.9rem;
+  border: 1px solid rgba(159, 255, 226, 0.4);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 900px) {
+  .hero-header {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-section {
+    padding: 0.75rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .hero-header {
+    position: static;
+    margin-bottom: 1.25rem;
+    max-width: 100%;
+    order: -1;
+  }
+
+  .hero-visual {
+    border-radius: calc(var(--hero-radius) * 0.6);
+  }
+
+  .hero-visual img {
+    min-height: 18rem;
+  }
+}

@@ -1,0 +1,20 @@
+.conteneur {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  background: var(--surface-conteneur-bg);
+  border-radius: calc(var(--hero-radius) * 0.6);
+  border: 1px solid var(--surface-conteneur-border);
+  box-shadow: var(--surface-conteneur-shadow);
+}
+
+.conteneur > * + * {
+  margin-top: clamp(1rem, 2vw, 1.75rem);
+}
+
+@media (max-width: 720px) {
+  .conteneur {
+    padding: 1.25rem 1rem 2rem;
+  }
+}

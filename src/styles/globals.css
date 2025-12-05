@@ -74,6 +74,7 @@ html {
   font-family: "Space Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
   background: var(--gradient-html);
   color: var(--clr-text);
+  overflow-x: hidden;
 }
 
 body {
@@ -113,12 +114,19 @@ img {
 
 .site-header__inner {
   max-width: var(--content-width);
-  margin: 0 auto;
   padding: 0.9rem clamp(1rem, 3vw, 2.75rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+
+  .site-header__inner {
+    margin: 0 auto;
+  }
+
 }
 
 .site-logo {
@@ -198,10 +206,10 @@ img {
   gap: 1.25rem;
   position: relative;
 }
-
+/*
 .site-nav {
   position: relative;
-}
+}*/
 
 .theme-toggle {
   width: 48px;
@@ -271,6 +279,8 @@ img {
   border-radius: 999px;
   cursor: pointer;
   transition: border-color 0.2s ease, background 0.2s ease;
+  position: relative;
+  z-index: 12;
 }
 
 .menu:hover,
