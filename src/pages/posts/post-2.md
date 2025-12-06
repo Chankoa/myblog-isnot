@@ -7,7 +7,7 @@ description: "Après avoir appris Astro, je ne pouvais plus m'arrêter !"
 image:
     url: "https://docs.astro.build/assets/arc.webp"
     alt: "Le logo Astro sur un fond sombre avec un arc de cercle dégradé violet."
-pubDate: 02-12-2025
+pubDate: 2025-12-02
 tags: ["astro", "blogging", "apprentissage en public", "réussites"]
 ---
 Après une première semaine réussie d'apprentissage d'Astro, j'ai décidé d'en faire un peu plus. J'ai écrit et importé un petit composant de mémoire !

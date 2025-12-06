@@ -2,19 +2,26 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const postModules = import.meta.glob('./posts/*.md', { eager: true });
+
+const toDate = (value?: string | Date) => {
+  if (!value) return undefined;
+  if (value instanceof Date) return value;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return new Date(`${value}T00:00:00Z`);
+  }
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.valueOf()) ? undefined : parsed;
+};
+
 const posts = Object.values(postModules).sort((a, b) => {
-  const dateA = new Date(a.frontmatter.pubDate ?? 0).valueOf();
-  const dateB = new Date(b.frontmatter.pubDate ?? 0).valueOf();
+  const dateA = toDate(a.frontmatter.pubDate)?.valueOf() ?? 0;
+  const dateB = toDate(b.frontmatter.pubDate)?.valueOf() ?? 0;
   return dateB - dateA;
 });
 
 const formatDate = (dateInput?: string | Date) => {
-  if (!dateInput) {
-    return "Date à venir";
-  }
-
-  const parsed = dateInput instanceof Date ? dateInput : new Date(dateInput);
-  if (isNaN(parsed.valueOf())) {
+  const parsed = toDate(dateInput);
+  if (!parsed) {
     return typeof dateInput === "string" ? dateInput : "Date à venir";
   }
 

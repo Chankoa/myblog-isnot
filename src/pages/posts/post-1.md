@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkDownPostLayout.astro
 
 title: 'Mon premier article de blog'
-pubDate: 02-12-2025
+pubDate: 2025-12-02
 description: "Il s'agit du premier article de mon nouveau blog Astro."
 author: 'Apprenti Astro'
 image:

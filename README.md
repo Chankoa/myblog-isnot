@@ -1,43 +1,59 @@
-# Astro Starter Kit: Minimal
+<div align="center">
 
-```sh
-npm create astro@latest -- --template minimal
+# AstroBlog
+
+Des récits, des tutoriels et des expérimentations front-end propulsés par Astro.
+
+</div>
+
+## ✨ Aperçu
+
+- Pages statiques générées avec [Astro 5](https://astro.build/)
+- Mise en page responsive (Hero, grille d’articles, pages Markdown)
+- Thème clair/sombre persistant, géré côté client
+- Styles modulaires en Sass (tokens, base, layout, composants)
+- Support complet des métadonnées pour les articles (OpenGraph, description, etc.)
+
+## 📁 Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
+root/
+├── public/              # Assets statiques servis tels quels
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/      # Header, Navigation, cartes, etc.
+│   ├── layouts/         # BaseLayout, layout Markdown custom
+│   ├── pages/           # Pages Astro + articles Markdown
+│   ├── scripts/         # JS côté client (si nécessaire)
+│   └── styles/          # Sass (tokens, base, layout, components)
+├── package.json
+└── astro.config.mjs
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🛠️ Commandes
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Commande              | Action                                      |
+| --------------------- | ------------------------------------------- |
+| `npm install`         | Installe les dépendances                    |
+| `npm run dev`         | Lance le serveur de dev sur `localhost:4321`|
+| `npm run build`       | Génère la version production (`dist/`)      |
+| `npm run preview`     | Prévisualise la build production            |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 📝 Contenu
 
-## 🧞 Commands
+- `src/pages/blog.astro` : index des articles, triés par date ISO
+- `src/pages/posts/*.md` : contenu éditorial (frontmatter complet)
+- `src/layouts/MarkDownPostLayout.astro` : template dédié aux articles (Hero + SEO)
 
-All commands are run from the root of the project, from a terminal:
+## 🌗 Thème
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Le bouton de bascule applique un attribut `data-theme="light"` sur `<html>` et persiste le choix via `localStorage`. Les couleurs, ombres et espacements proviennent de `src/styles/tokens/_variables.scss`.
 
-## 👀 Want to learn more?
+## ✅ Bonnes pratiques
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Encodage UTF-8 pour tous les fichiers afin de préserver les accents
+- Dates en format ISO (`YYYY-MM-DD`) pour éviter toute ambigüité
+- Accessibilité : libellés ARIA explicites et texte alternatif cohérent
+
+## 📄 Licence
+
+Projet pédagogique. Reprenez ce modèle librement en créditant AstroBlog.

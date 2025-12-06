@@ -2,37 +2,56 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import "../styles/main.scss";
+
 const { frontmatter } = Astro.props;
+const description = frontmatter.description ?? "Un article publié sur AstroBlog";
+const pageTitle = `${frontmatter.title} | AstroBlog`;
+const heroImage = {
+    url:
+        frontmatter.image?.url ??
+        'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80',
+    alt: frontmatter.image?.alt ?? frontmatter.title,
+};
 ---
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>{pageTitle}</title>
+        <meta name="description" content={description} />
+        {frontmatter.author && <meta name="author" content={frontmatter.author} />}
+        <meta property="og:title" content={frontmatter.title} />
+        <meta property="og:description" content={description} />
+        {heroImage.url && <meta property="og:image" content={heroImage.url} />}
+    </head>
+    <body>
+        <Header />
 
-<meta charset="utf-8" />
-<title>{frontmatter.title}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Hero section -->
+        <section class="hero-section">
+            <figure class="hero-visual">
+                <img src={heroImage.url} alt={heroImage.alt} loading="lazy" decoding="async" />
+                <figcaption>{heroImage.alt}</figcaption>
+            </figure>
 
-<Header />
+            <header class="hero-header">
+                <h1>{frontmatter.title}</h1>
+                <p class="hero-eyebrow">Écrit par {frontmatter.author} | Publié le {frontmatter.pubDate}</p>
+                <p class="hero-description">{frontmatter.description}</p>
+                <ul class="hero-tags">
+                    {frontmatter.tags?.map((tag: string) => <li class="pills">{tag}</li>)}
+                </ul>
+            </header>
+        </section>
 
-<!-- Hero section -->
-<section class="hero-section">
-    <figure class="hero-visual">
-        <img src={frontmatter.image.url} alt={frontmatter.image.alt} loading="lazy" decoding="async">
-        <figcaption>{frontmatter.image.alt}</figcaption>
-    </figure>
+        <!-- Le contenu de l'article -->
+        <main class="conteneur">
+            <slot />
+        </main>
 
-    <header class="hero-header">
-        <h1>{frontmatter.title}</h1>
-         <p class="hero-eyebrow">Écrit par {frontmatter.author} | Publié le {frontmatter.pubDate}</p>
-        <p class="hero-description">{frontmatter.description}</p>
-        <ul class="hero-tags">
-            {frontmatter.tags?.map((tag: string) => <li class="pills">{tag}</li>)}
-        </ul>
-       
-    </header>
-</section>
-
-<!-- Le contenu de l'article -->
-<main class="conteneur">
-<slot />
-</main>
-
-<Footer />
+        <Footer />
+    </body>
+</html>
 
